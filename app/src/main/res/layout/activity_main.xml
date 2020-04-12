@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d8e0e8"
+    android:orientation="vertical">
+    <EditText
+        android:id="@+id/input_text"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:hint="请输入您的身高(cm)"
+        android:gravity="center" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text=""
+        android:textColor="#00000000"/>
+    <Button
+        android:id="@+id/ceju"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_gravity="center_horizontal"
+        android:background="#00000000"
+        android:textSize="40dp"
+        android:text="测距" />
+
+    <Button
+        android:id="@+id/huitu"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_gravity="center_horizontal"
+        android:background="#00000000"
+        android:textSize="40dp"
+        android:text="绘图" />
+
+</LinearLayout>
