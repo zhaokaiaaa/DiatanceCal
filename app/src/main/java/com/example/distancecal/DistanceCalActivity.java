@@ -48,6 +48,7 @@ public class DistanceCalActivity extends AppCompatActivity implements SurfaceHol
     private Intent intent;
     private int i = 0;//记录拍摄张数
     private ArrayList<Point> points = new ArrayList<>();//存放坐标集
+    private double k=0;//存放倍数
 
 
     public static void actionStart(Context context, String input_data, String tips) {
@@ -111,10 +112,11 @@ public class DistanceCalActivity extends AppCompatActivity implements SurfaceHol
             takePhotoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    i++;
                     coordinate();
+                    i++;
                     if (i == 9) {
-                        HuizhiActivity.actionStart(DistanceCalActivity.this, points);
+                        HuizhiActivity.actionStart(DistanceCalActivity.this, points,k/9);
+                        k=0;
                         for (int i=8;i>=0;i--) {
                             points.remove(i);
                         }
@@ -148,10 +150,13 @@ public class DistanceCalActivity extends AppCompatActivity implements SurfaceHol
         int height = Calculate.getHeight(intent);
         double angle = Calculate.getAngle(accelerometerValues);
         int distance = Calculate.distanceCal(height, angle);
+        int x=ScreenUtils.getScreenWidth(DistanceCalActivity.this) / 2;
+        int y=ScreenUtils.getScreenHeight(DistanceCalActivity.this) / 2;
         int dx = (int) (distance * Math.sin(values[0])/2);//x方向长度
         int dy = (int) (distance * Math.cos(values[0])/2);//y方向长度
-        dx = dx + ScreenUtils.getScreenWidth(DistanceCalActivity.this) / 2;
-        dy = ScreenUtils.getScreenHeight(DistanceCalActivity.this) / 2-dy ;//以屏幕中心为原点生成坐标
+        dx = dx + x;
+        dy = y-dy ;//以屏幕中心为原点生成坐标
+        k+=distance/Math.sqrt((dx-x)*(dx-x)+(dy-y)*(dy-y));
         Point point = new Point(dx, dy);
         points.add(point);
     }

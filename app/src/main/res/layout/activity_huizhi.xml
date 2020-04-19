@@ -10,8 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="竖直向上为正北方向"
-        android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:id="@+id/textView" />
+
+    <TextView
+        android:id="@+id/length"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp" />
 
 </RelativeLayout>

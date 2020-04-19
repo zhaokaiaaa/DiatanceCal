@@ -42,7 +42,7 @@ public class Calculate {
      * @return
      */
     public static int distanceCal(int height, double angle) {
-        int distance = (int) Math.rint((height - 22) / Math.tan(angle));
+        int distance = (int) Math.rint((height - 30) / Math.tan(angle));
         return distance;
     }
 }

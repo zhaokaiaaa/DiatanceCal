@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
@@ -49,12 +50,12 @@ public class CustomView extends View {
         //去锯齿
         paint.setAntiAlias(true);
         //设置绘制颜色
-        paint.setColor(getResources().getColor(android.R.color.holo_blue_light));
-        paint.setStrokeWidth(10);//画笔粗细
+        paint.setColor(Color.BLACK);
+        paint.setStrokeWidth(5);//画笔粗细
         //为了方便看Path的路径效果
         //设置绘制风格为空心
         paint.setStyle(Paint.Style.STROKE);
         //设置空心边框的宽度
-        paint.setStrokeWidth(10);
+        paint.setStrokeWidth(5);
     }
 }
