@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
+public class MainActivity extends BaseActivity implements View.OnClickListener {
+    private long firstTime = 0;
     private EditText heightInput;
     private boolean isRight = true;
 
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActivityCollector.addActivity(this);
         permissions();
         init();
     }
@@ -39,7 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         huituButton.setOnClickListener(this);
 
     }
-//权限申请模块
+
+    //权限申请模块
     public void permissions() {
         List<String> permissionList = new ArrayList<>();
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -81,14 +83,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (isRight(input)) {
             switch (view.getId()) {
                 case R.id.ceju:
-                    String tipsCeju="请站立并将靶心对准物体底部拍摄";
+                    String tipsCeju = "请站立并将靶心对准物体底部拍摄";
                     DistanceCalActivity.setCeju();
-                    DistanceCalActivity.actionStart(MainActivity.this,input,tipsCeju);
+                    DistanceCalActivity.actionStart(MainActivity.this, input, tipsCeju);
                     break;
                 case R.id.huitu:
-                    String tipsHuizhi="请站立并将靶心对准物体底部后，旋转一周拍摄9张照片";
+                    String tipsHuizhi = "请站立并将靶心对准物体底部后，旋转一周拍摄9张照片";
                     DistanceCalActivity.setHuizhi();
-                    DistanceCalActivity.actionStart(MainActivity.this,input,tipsHuizhi);
+                    DistanceCalActivity.actionStart(MainActivity.this, input, tipsHuizhi);
                     break;
                 default:
                     break;
@@ -112,4 +114,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return isRight;
     }
 
+    @Override
+    public void onBackPressed() {
+        long secondTime = System.currentTimeMillis();
+        if (secondTime - firstTime > 2000) {
+            Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            firstTime = secondTime;
+        } else {
+            ActivityCollector.finishAllActivity();
+        }
+    }
 }

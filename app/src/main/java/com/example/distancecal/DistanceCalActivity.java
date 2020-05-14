@@ -26,7 +26,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class DistanceCalActivity extends AppCompatActivity implements SurfaceHolder.Callback {
+public class DistanceCalActivity extends BaseActivity implements SurfaceHolder.Callback {
 
     /**
      * 变量定义
@@ -62,6 +62,7 @@ public class DistanceCalActivity extends AppCompatActivity implements SurfaceHol
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_camera_activity);
+        ActivityCollector.addActivity(this);
         init();
         click();
     }

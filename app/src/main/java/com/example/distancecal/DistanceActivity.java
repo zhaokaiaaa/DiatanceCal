@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DistanceActivity extends DistanceCalActivity {
+public class DistanceActivity extends BaseActivity {
     private TextView distanceText;
     private TextView heightText;
     private TextView angleText;
@@ -25,6 +25,7 @@ public class DistanceActivity extends DistanceCalActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.distance_layout);
+        ActivityCollector.addActivity(this);
         distanceText = (TextView) findViewById(R.id.distance);
         heightText = (TextView) findViewById(R.id.height);
         angleText = (TextView) findViewById(R.id.angle);
@@ -39,5 +40,10 @@ public class DistanceActivity extends DistanceCalActivity {
         intent = getIntent();
         height=intent.getIntExtra("height",1);
         angle = intent.getDoubleExtra("angle",1);
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(DistanceActivity.this,MainActivity.class);
+        startActivity(intent);
     }
 }

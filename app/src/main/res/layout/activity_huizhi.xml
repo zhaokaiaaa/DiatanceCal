@@ -2,25 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <com.example.distancecal.CustomView
         android:id="@+id/huizhi_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="竖直向上为正北方向"
         android:gravity="center"
-        android:textSize="20sp"
-        android:id="@+id/textView" />
+        android:text="竖直向上为正北方向"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/length"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20sp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:textSize="20sp" />
 
 </RelativeLayout>

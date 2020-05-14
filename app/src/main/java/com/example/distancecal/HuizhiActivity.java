@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class HuizhiActivity extends AppCompatActivity {
+public class HuizhiActivity extends BaseActivity {
     private CustomView huizhi = null;
     private ArrayList<Point> points=new ArrayList<>();
     double k;
@@ -26,6 +26,7 @@ public class HuizhiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_huizhi);
+        ActivityCollector.addActivity(this);
         huizhi = (CustomView) findViewById(R.id.huizhi_view);
         textView= (TextView) findViewById(R.id.length);
         points=getIntent().getParcelableArrayListExtra("points");
@@ -44,5 +45,10 @@ public class HuizhiActivity extends AppCompatActivity {
             string+=length+"cm  ";
         }
         textView.setText("按照拍照顺序，长度分别为："+ string);
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(HuizhiActivity.this,MainActivity.class);
+        startActivity(intent);
     }
 }
